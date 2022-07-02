@@ -121,7 +121,7 @@ class PageLoaderKeyboard {
   /// [keyDown] and [keyUp] determines whether those events should be sent.
   void typeSpecialKey(PageLoaderSpecialKey key,
       {bool keyDown = true, bool keyUp = true}) {
-    final keyString = _specialKeyToKeyProperty[key]!;
+    final keyString = key.value;
     if (keyDown) {
       switch (key) {
         case PageLoaderSpecialKey.alt:
@@ -190,75 +190,47 @@ class _Key {
 ///
 /// These are keys that do not have an explicit String representation
 /// and do not send 'keypress' events.
+///
+/// Mapping of special keys to its key string value is based on https://www.w3.org/TR/uievents-key/#key-string
 enum PageLoaderSpecialKey {
-  backSpace,
-  tab,
-  enter,
-  shift,
-  control,
-  alt,
-  pause,
-  escape,
-  pageUp,
-  pageDown,
-  end,
-  home,
-  left,
-  up,
-  right,
-  down,
-  insert,
-  delete,
-  f1,
-  f2,
-  f3,
-  f4,
-  f5,
-  f6,
-  f7,
-  f8,
-  f9,
-  f10,
-  f11,
-  f12,
-  meta,
+  backSpace('Backspace'),
+  tab('Tab'),
+  enter('Enter'),
+  shift('Shift'),
+  control('Control'),
+  alt('Alt'),
+  pause('Pause'),
+  escape('Escape'),
+  pageUp('PageUp'),
+  pageDown('PageDown'),
+  end('End'),
+  home('Home'),
+  left('ArrowLeft'),
+  up('ArrowUp'),
+  right('ArrowRight'),
+  down('ArrowDown'),
+  insert('Insert'),
+  delete('Delete'),
+  f1('F1'),
+  f2('F2'),
+  f3('F3'),
+  f4('F4'),
+  f5('F5'),
+  f6('F6'),
+  f7('F7'),
+  f8('F8'),
+  f9('F9'),
+  f10('F10'),
+  f11('F11'),
+  f12('F12'),
+  meta('Meta');
+
+  final String value;
+
+  const PageLoaderSpecialKey(this.value);
 }
 
-// Mapping of special keys to its key string value.
-// Based on: https://www.w3.org/TR/uievents-key/#key-string
-const _specialKeyToKeyProperty = {
-  PageLoaderSpecialKey.backSpace: 'Backspace',
-  PageLoaderSpecialKey.tab: 'Tab',
-  PageLoaderSpecialKey.enter: 'Enter',
-  PageLoaderSpecialKey.shift: 'Shift',
-  PageLoaderSpecialKey.control: 'Control',
-  PageLoaderSpecialKey.alt: 'Alt',
-  PageLoaderSpecialKey.pause: 'Pause',
-  PageLoaderSpecialKey.escape: 'Escape',
-  PageLoaderSpecialKey.pageUp: 'PageUp',
-  PageLoaderSpecialKey.pageDown: 'PageDown',
-  PageLoaderSpecialKey.end: 'End',
-  PageLoaderSpecialKey.home: 'Home',
-  PageLoaderSpecialKey.left: 'ArrowLeft',
-  PageLoaderSpecialKey.up: 'ArrowUp',
-  PageLoaderSpecialKey.right: 'ArrowRight',
-  PageLoaderSpecialKey.down: 'ArrowDown',
-  PageLoaderSpecialKey.insert: 'Insert',
-  PageLoaderSpecialKey.delete: 'Delete',
-  PageLoaderSpecialKey.f1: 'F1',
-  PageLoaderSpecialKey.f2: 'F2',
-  PageLoaderSpecialKey.f3: 'F3',
-  PageLoaderSpecialKey.f4: 'F4',
-  PageLoaderSpecialKey.f5: 'F5',
-  PageLoaderSpecialKey.f6: 'F6',
-  PageLoaderSpecialKey.f7: 'F7',
-  PageLoaderSpecialKey.f8: 'F8',
-  PageLoaderSpecialKey.f9: 'F9',
-  PageLoaderSpecialKey.f10: 'F10',
-  PageLoaderSpecialKey.f11: 'F11',
-  PageLoaderSpecialKey.f12: 'F12',
-  PageLoaderSpecialKey.meta: 'Meta',
-};
+
 
 /// Keyboard event type.
 enum KeyboardEventType {
